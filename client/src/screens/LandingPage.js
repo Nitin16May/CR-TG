@@ -50,7 +50,8 @@ function LandingPage() {
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/loginuser`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Headers': '*'
             },
             body: JSON.stringify({ usertype: {UserType}, email: creds.email, password: creds.password })
         });
