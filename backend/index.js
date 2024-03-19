@@ -5,6 +5,10 @@ const mongoDb = require("./db")
 
 app.use((req, res, next)=>{
   res.setHeader('Access-Control-Allow-Origin', process.env.REACT_APP_FRONTEND_URL);
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
   next();
 })
 
