@@ -50,12 +50,19 @@ function LandingPage() {
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/loginuser`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'text/plain'
             },
             body: JSON.stringify({ usertype: {UserType}, email: creds.email, password: creds.password })
         });
-        const json = await response.json()
-        if (!json.success) {
+        const textResponse = await response.text();
+        let json;
+        try {
+            json = JSON.parse(textResponse);
+        } catch (error) {
+            // Handle parsing error
+            console.error("Error parsing JSON:", error);
+        }
+        if (json && !json.success) {
             alert('Enter Valid Credentials');
         }
         else {
