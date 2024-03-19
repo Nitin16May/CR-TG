@@ -3,19 +3,6 @@ const app = express()
 const port = 5000
 const mongoDb = require("./db")
 
-app.use((req, res, next)=>{
-  res.setHeader('Access-Control-Allow-Origin', process.env.REACT_APP_FRONTEND_URL);
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
-  if (req.method === 'OPTIONS') {
-    // preflight request. reply successfully:
-    return res.status(200).end();
-  }
-  next();
-})
-
 mongoDb();
 
 app.get('/', (req, res) => {
