@@ -4,6 +4,10 @@ const port = 5000
 const mongoDb = require("./db")
 
 app.use((req, res, next)=>{
+  if (req.method === 'OPTIONS') {
+    // preflight request. reply successfully:
+    return res.status(200).end();
+  }
   res.setHeader('Access-Control-Allow-Origin', process.env.REACT_APP_FRONTEND_URL);
   res.header(
     'Access-Control-Allow-Headers',
